@@ -1,5 +1,10 @@
-from Execution import *
 from pygame import mixer
+import sys
+import os
+current_dir = os.path.dirname(os.path.abspath(__file__))
+audio_path = os.path.join(current_dir, 'Audios')
+#sys.path.insert(1, current_dir)
+from Execution import *
 intent_list = {
     '1' : ['on','1','open',]
     ,
@@ -10,19 +15,19 @@ intent_list = {
 }
 ss=0
 mixer.init()
-choke = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\chokeme.wav')
-hoon = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\hoonyeahh.wav')
-song = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\soaringhoonyeah.wav')
-chalaja = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\chala-ja.mp3')
-shutdown = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\shutdown.mp3')
-bruh = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\_bruh.mp3')
-augh = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\_aughhhh.mp3')
-puneet = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\puneet.mp3')
-chal = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\Chal.mp3')
-somebody = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\somebody.wav')
-dametu = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\Dametucasito.mp3')
-ting = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\discord-notification.mp3')
-aryannight = mixer.Sound('Machine-Learning\Files\Bots\EDITH\dependencies\Audios\Aryannightout.wav')
+choke = mixer.Sound(os.path.join(audio_path, 'chokeme.wav'))
+hoon = mixer.Sound(os.path.join(audio_path, 'hoonyeahh.wav'))
+song = mixer.Sound(os.path.join(audio_path, 'soaringhoonyeah.wav'))
+chalaja = mixer.Sound(os.path.join(audio_path, 'chala-ja.mp3'))
+shutdown = mixer.Sound(os.path.join(audio_path, 'shutdown.mp3'))
+bruh = mixer.Sound(os.path.join(audio_path, '_bruh.mp3'))
+augh = mixer.Sound(os.path.join(audio_path, '_aughhhh.mp3'))
+puneet = mixer.Sound(os.path.join(audio_path, 'puneet.mp3'))
+chal = mixer.Sound(os.path.join(audio_path, 'Chal.mp3'))
+somebody = mixer.Sound(os.path.join(audio_path, 'somebody.wav'))
+dametu = mixer.Sound(os.path.join(audio_path, 'Dametucasito.mp3'))
+ting = mixer.Sound(os.path.join(audio_path, 'discord-notification.mp3'))
+aryannight = mixer.Sound(os.path.join(audio_path, 'Aryannightout.wav'))
 
 def nonveg(query):
     if (('love' in query) or ('like' in query) or ('f***' in query)) and ('you' in query):
@@ -75,8 +80,3 @@ def nonveg(query):
         else:
             dametu.play()
             return ss
-
-
-
-
-    

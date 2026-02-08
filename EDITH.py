@@ -1,22 +1,16 @@
 ####################################  IMPORTS  ###################################
-
-import sys
-    # caution: path[0] is reserved for script path (or '' in REPL)
-sys.path.insert(1, 'Machine-Learning/Files/Bots/EDITH/dependencies/')
 import random
-
-# If using Custom Model
-#import Tensorflow_WakeWord_Custom as prd
-
-#If using Picovoice
-import wake_word_module as pico
-
-
+import sys
+import os
 from time import sleep
+current_dir = os.path.dirname(os.path.abspath(__file__))
+dependencies_path = os.path.join(current_dir, 'dependencies')
+sys.path.insert(1, dependencies_path)
 from Execution import *
 import Speech_to_Text as SR
 from execution_nonveg import *
-####################################  IMPORTS  ###################################
+
+######################1##############  IMPORTS  ###################################
 
 
 ####################################  EDITH  #####################################
@@ -24,9 +18,9 @@ def EDITH(query):
     # EX = exec.gq(query)
     # gq(query).appericiate()
 
-    if (("mail" in query) or ('email' in query)) and ("read" in query):
-        mail()
-    elif ( ("good" in query) or ("amazing" in query) or ("best" in query) or ("intelligent" in query) or ("better" in query)) and ("you" in query):
+    # if (("mail" in query) or ('email' in query)) and ("read" in query):
+    #     mail()
+    if ( ("good" in query) or ("amazing" in query) or ("best" in query) or ("intelligent" in query) or ("better" in query)) and ("you" in query):
         appereciate()
     elif "news" in query:
         news()
@@ -34,14 +28,14 @@ def EDITH(query):
         weather(query)
     elif ("jokes" in query) or ("joke" in query):
         joke()
-    elif ("remind" in query):
-        remind(query)
+    # elif ("remind" in query):
+    #     remind(query)
     #elif ("clear" in query) and ("reminders" in query):
        # clear_reminder()
-    elif ("read" in query) and ("reminders" in query):
-        read_reminder()
-    elif ('change' in query) and ('name' in query) and ('my' in query) and ('to' in query):
-        change_name(query)
+    # elif ("read" in query) and ("reminders" in query):
+    #     read_reminder()
+    # elif ('change' in query) and ('name' in query) and ('my' in query) and ('to' in query):
+    #     change_name(query)
     elif (("hello" in query) or ("hi" in query) or ("hey" in query)) and (len(query) == 1):
         greet()
     elif ("time" in query) or ("date" in query):
@@ -52,8 +46,12 @@ def EDITH(query):
         query.remove('what')
         query.remove('is')
         maths(query)
-        
+    else:
+        speak('No matching Skill available for command %s'%' '.join(query))
+
+
     #Home Automations
+    '''
     elif ('turn' in query) or ('switch' in query) or ('open'in query) or ('close' in query):
         for inn in intent_list['1']:
             if inn in query:
@@ -73,9 +71,8 @@ def EDITH(query):
             appliance = query[-3]
             print(location,appliance,intent_binary)
             speak('{0} the {1} in {2}'.format(intent,appliance,location))
-
-    else:
-        speak('No matching Skill available for command %s'%' '.join(query))
+        '''
+   
 
 
 
@@ -93,7 +90,7 @@ while loop:
     #wake = prd.DATA()
     
     #Comment out if using Picovoice
-    wake = pico.detect(1)
+    wake = int(input("wake the bot by entering 1: "))
     
     if wake == 1:
         print(wake)
@@ -104,7 +101,6 @@ while loop:
             term = ['stop','terminate','kill']
             if any(x in ' '.join(text) for x in term):
                 loop = 0
-                pico.detect(0) #comment if using Custom Wake_Word
                 speak('Terminating Sir, Have a good day!')
                 shutdown.play()
                 sleep(3)

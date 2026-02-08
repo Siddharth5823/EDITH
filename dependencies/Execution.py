@@ -17,7 +17,6 @@ from bs4 import BeautifulSoup
 from gnewsclient import gnewsclient
 from time import sleep
 #PYTHONPATH='C:\Python\Machine-Learning\Files\Bots\EDITH\dependencies'
-from details import Personal
 import os 
 import win32com.client as wincom
 
@@ -25,6 +24,7 @@ def speak(text):
     say = wincom.Dispatch("SAPI.SpVoice")
     say.Speak(text)
 
+'''
 def mail_read(username,password,host):
     mail = imaplib.IMAP4_SSL(host)
     mail.login(username, password)
@@ -57,6 +57,7 @@ def details_change(text):
     with open('details.py','w') as file:
         file.write('Personal = '+str(Personal))
     file.close()
+'''
 
 def greet():
     global ohh
@@ -74,8 +75,8 @@ def greet():
     if a>18:
         ohh = "Good Night"
     print(ohh)
-    speak(ohh+Personal["name"])
-
+    speak(ohh)
+'''
 def mail():
     speak('Yo Mister Siddharth! Good to see you!')
     mail = mail_read(Personal['mail'],Personal['mailpasswd'],'imap.gmail.com')
@@ -88,7 +89,7 @@ def mail():
     elif mail == 'empty':
         print('No Recent Emails Found!')
         speak('No Recent Emails Found!')
-
+'''
 def appereciate():
     speak('thank you!')
 
@@ -140,18 +141,18 @@ def joke():
     jokes = pyjokes.get_jokes(language="en", category="all")
     random_num = rand.randrange(len(jokes))
     speak(jokes[random_num])
-    
+'''    
 def remind(query):
     remind = open("Machine-Learning/Files/Bots/EDITH/dependencies/Reminders.txt","a")
     for i in range(2): query.pop(0)
     remind.write(" ".join(query)+"\n")
     remind.close()
-'''
+
 def clear_reminder():
     remind = open("Machine-Learning\Files\Bots\EDITH\dependencies\Reminders.txt","w")
     remind.write("")
     remind.close()
-  '''  
+    
 def read_reminder():
     remind = open("Machine-Learning/Files/Bots/EDITH/dependencies/Reminders.txt","r")
     reminders = remind.read()
@@ -165,6 +166,7 @@ def read_reminder():
 def change_name(query):
     for i in range(4): query.pop(0)
     details_change(' '.join(query))
+'''
 
 def time():
     x = datetime.datetime.now()
