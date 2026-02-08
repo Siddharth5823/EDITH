@@ -1,0 +1,1 @@
+Personal = {'name': 'sid', 'mail': 'python003.mail@gmail.com', 'mailpasswd': 'anaconda69'}
