@@ -3,9 +3,11 @@ import random
 import sys
 import os
 from time import sleep
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 dependencies_path = os.path.join(current_dir, 'dependencies')
 sys.path.insert(1, dependencies_path)
+
 from Execution import *
 import Speech_to_Text as SR
 from execution_nonveg import *

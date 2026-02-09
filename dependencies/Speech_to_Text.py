@@ -9,7 +9,9 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 TEMP_AUDIO = os.path.join(BASE_DIR, "input.wav")
 
 print("loading model")
-model = WhisperModel("base", device="cpu", compute_type="int8")
+
+MODEL_SIZE = "small.en"
+model = WhisperModel(MODEL_SIZE, device="cpu", compute_type="int8")
 
 def TEXT():
     fs = 44100
