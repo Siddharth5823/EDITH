@@ -1,18 +1,20 @@
 from pygame import mixer
 import sys
 import os
+
 current_dir = os.path.dirname(os.path.abspath(__file__))
 audio_path = os.path.join(current_dir, 'Audios')
-#sys.path.insert(1, current_dir)
+
 from Execution import *
+
 intent_list = {
     '1' : ['on','1','open',]
     ,
     '0' : ['off','0','close']
     ,
     'negative': ['not',"don't",'wont',"does'nt",'no','neither',"didn't"]
-
 }
+
 ss=0
 mixer.init()
 choke = mixer.Sound(os.path.join(audio_path, 'chokeme.wav'))

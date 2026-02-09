@@ -15,11 +15,6 @@ from execution_nonveg import *
 
 ####################################  EDITH  #####################################
 def EDITH(query):
-    # EX = exec.gq(query)
-    # gq(query).appericiate()
-
-    # if (("mail" in query) or ('email' in query)) and ("read" in query):
-    #     mail()
     if ( ("good" in query) or ("amazing" in query) or ("best" in query) or ("intelligent" in query) or ("better" in query)) and ("you" in query):
         appereciate()
     elif "news" in query:
@@ -28,14 +23,6 @@ def EDITH(query):
         weather(query)
     elif ("jokes" in query) or ("joke" in query):
         joke()
-    # elif ("remind" in query):
-    #     remind(query)
-    #elif ("clear" in query) and ("reminders" in query):
-       # clear_reminder()
-    # elif ("read" in query) and ("reminders" in query):
-    #     read_reminder()
-    # elif ('change' in query) and ('name' in query) and ('my' in query) and ('to' in query):
-    #     change_name(query)
     elif (("hello" in query) or ("hi" in query) or ("hey" in query)) and (len(query) == 1):
         greet()
     elif ("time" in query) or ("date" in query):
@@ -48,48 +35,14 @@ def EDITH(query):
         maths(query)
     else:
         speak('No matching Skill available for command %s'%' '.join(query))
-
-
-    #Home Automations
-    '''
-    elif ('turn' in query) or ('switch' in query) or ('open'in query) or ('close' in query):
-        for inn in intent_list['1']:
-            if inn in query:
-                intent_binary = 1
-                intent = 'open'
-        for inn in intent_list['0']:
-            if inn in query:
-                intent_binary = 0   
-                intent = 'close'
-        if 'all' in query:
-            location = query[-1]
-            appliance = 'all'
-            print(location,appliance,intent_binary)
-            speak('{0} all the Appliances in {1}'.format(intent,location))
-        else: 
-            location = query[-1]
-            appliance = query[-3]
-            print(location,appliance,intent_binary)
-            speak('{0} the {1} in {2}'.format(intent,appliance,location))
-        '''
-   
-
-
-
-
-
 ####################################  EDITH  #####################################
 
 
 ####################################  INPUT  #####################################
+
 loop = 1
-# EDITH('good')
 while loop:
-    
-    #UNComment out if using Custom Model
-    #wake = prd.DATA()
-    
-    #Comment out if using Picovoice
+
     wake = int(input("wake the bot by entering 1: "))
     
     if wake == 1:
