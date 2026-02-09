@@ -3,6 +3,7 @@ import sounddevice as sd
 from scipy.io.wavfile import write
 from faster_whisper import WhisperModel
 import numpy as np
+import string 
 
 # Use a relative path for the temporary audio file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -38,6 +39,9 @@ def TEXT():
     segments, info = model.transcribe(TEMP_AUDIO, beam_size=5, vad_filter=True)
     
     text = "".join([segment.text for segment in segments]).strip()
-    
     print(f"Result: {text}")
+    
+    if text:
+        text = text.translate(str.maketrans('', '', string.punctuation)).lower()
+
     return text if text else 0000
