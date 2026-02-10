@@ -4,8 +4,12 @@ import openwakeword.utils as utils
 import os
 import sounddevice as sd
 import numpy as np
+from config import *
 
-MODEL_NAME = "alexa" 
+config = load_config()
+MODEL_NAME = config["wake_word"]
+
+print(f"Loading Wake Word Model: {MODEL_NAME}...") 
 
 try:
     print(f"Loading Wake Word Model: {MODEL_NAME}...")
@@ -30,6 +34,12 @@ if owwModel:
     print("✅ Wake Word System Ready.")
 else:
     print("⚠️ Wake Word System Disabled.")
+
+def reload_model():
+    config = load_config()
+    MODEL_NAME = config["wake_word"]
+    print(f"Reloading Wake Word Model: {MODEL_NAME}...")
+    owwModel = Model(wakeword_models=[MODEL_NAME], inference_framework="onnx")
 
 FORMAT = np.int16
 CHANNELS = 1

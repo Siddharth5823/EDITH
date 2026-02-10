@@ -4,6 +4,7 @@ from scipy.io.wavfile import write
 from faster_whisper import WhisperModel
 import numpy as np
 import string 
+from word2number import w2n
 
 # Use a relative path for the temporary audio file
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -44,4 +45,20 @@ def TEXT():
     if text:
         text = text.translate(str.maketrans('', '', string.punctuation)).lower()
 
-    return text if text else 0000
+    if not text: return 0000
+
+    try:
+        words = text.split()
+        new_words = []
+        for word in words:
+            try:
+                num = w2n.word_to_num(word)
+                new_words.append(str(num))
+            except ValueError:
+                new_words.append(word)
+        
+        text = " ".join(new_words)
+    except Exception as e:
+        pass 
+    text = text.lower().split()
+    return text

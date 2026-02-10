@@ -12,6 +12,7 @@ from Execution import *
 import Speech_to_Text as SR
 from audios import *
 from wake_word import wake
+from config import *
 
 ######################1##############  IMPORTS  ###################################
 
@@ -36,6 +37,38 @@ def EDITH(query):
         query.remove('what')
         query.remove('is')
         maths(query)
+    elif ("wake" in query) and ("word" in query):
+        print("which wake word do you want?")
+        s = '''
+        hey_jarvis   [1]
+        alexa        [2] 
+        hey_mycroft  [3]
+        hey_rhasspy  [4]
+        '''
+        print(s)
+        speak("which wake word do you want?")
+        
+        
+        d = {'1':'hey_jarvis' , '2':'alexa' , '3':'hey_mycroft' , '4':'hey_rhasspy'}
+        for i in range(3):
+            text = SR.TEXT() 
+            try:
+                s = " ".join(text) 
+            except:
+                continue
+            if s not in d:
+                pass
+            else:
+                i = 0
+                update_wake_word(s)
+                break
+            print("Come again!")
+            speak("Come again!")
+            
+        if i == 2:
+            print("Command Failed! Try again")
+            speak("Command Failed! Try again")
+
     else:
         speak('No matching Skill available for command %s'%' '.join(query))
 ####################################  EDITH  #####################################
@@ -50,8 +83,7 @@ while loop:
         print(wake)
         ting.play()
         text = SR.TEXT()
-        if type(text) == str:
-            text = text.lower().split()
+        if text != 0000:
             term = ['stop','terminate','kill']
             if any(x in ' '.join(text) for x in term):
                 loop = 0
@@ -64,6 +96,6 @@ while loop:
                 except: pass
                 EDITH(text)
 
-        elif text == 0000:
+        else:
             print("DIDN'T UNDERSTOOD")
 ####################################  INPUT  #####################################
