@@ -37,7 +37,7 @@ RATE = 16000
 CHUNK = 1280 
 
 def wake():
-    print("\nListening for 'Hey Jarvis'...")
+    print(f"\nListening for '{MODEL_NAME}'...")
     
     # We use a context manager to open the mic stream efficiently
     with sd.InputStream(samplerate=RATE, channels=CHANNELS, dtype='int16', blocksize=CHUNK) as stream:
