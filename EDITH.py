@@ -10,7 +10,7 @@ sys.path.insert(1, dependencies_path)
 
 from Execution import *
 import Speech_to_Text as SR
-from execution_nonveg import *
+from audios import *
 from wake_word import wake
 
 ######################1##############  IMPORTS  ###################################
@@ -42,11 +42,8 @@ def EDITH(query):
 
 
 ####################################  INPUT  #####################################
-
 loop = 1
 while loop:
-
-    #wake = int(input("wake the bot by entering 1: "))
     w = False
     w = wake()
     if w:
@@ -65,11 +62,8 @@ while loop:
                 try:
                     text.remove('the')
                 except: pass
-                print(text)
-                d = nonveg(text)
-    
-                if d != 0:
-                    EDITH(text)
+                EDITH(text)
+
         elif text == 0000:
             print("DIDN'T UNDERSTOOD")
 ####################################  INPUT  #####################################
