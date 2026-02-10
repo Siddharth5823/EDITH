@@ -2,6 +2,7 @@ beautifulsoup4==4.14.3
 faster_whisper==1.2.1
 gnewsclient==1.12
 numpy==2.4.2
+openwakeword==0.6.0
 pygame==2.6.1
 pyjokes==0.8.3
 Requests==2.32.5
